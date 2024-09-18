@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "whatstandard"
+version = "0.1.0"
+description = "This is a chatbot to ask a consensus of a treatment based on pooled guidelines of a specific disorder"
+authors = ["Toshiki"]
+license = "Mozilla Public License Version 2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "ˆ3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
