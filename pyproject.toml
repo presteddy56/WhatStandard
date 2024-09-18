@@ -3,13 +3,20 @@ name = "whatstandard"
 version = "0.1.0"
 description = "This is a chatbot to ask a consensus of a treatment based on pooled guidelines of a specific disorder"
 authors = ["Toshiki"]
-license = "Mozilla Public License Version 2.0"
+license = "Mozilla Public License 2.0"
 readme = "README.md"
+[tool.poetry.group.dev]
 
 [tool.poetry.dependencies]
-python = "ˆ3.11"
-
-
+python = "^3.12"
+langchain = "*"
+langchainhub = "*"
+langchain-chroma ="*"
+langchain-groq = "*"
+langchain-huggingface = "*"
+gradio = "*"
+[tool.poetry.group.dev.dependencies]
+jupyter = "*"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
