@@ -14,7 +14,10 @@ langchainhub = "*"
 langchain-chroma ="*"
 langchain-groq = "*"
 langchain-huggingface = "*"
+langchain_community = "*"
 gradio = "*"
+pypdf = "*"
+rapidocr-onnxruntime = "*"
 [tool.poetry.group.dev.dependencies]
 jupyter = "*"
 [build-system]
