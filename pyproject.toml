@@ -18,6 +18,11 @@ langchain_community = "*"
 gradio = "*"
 pypdf = "*"
 rapidocr-onnxruntime = "*"
+pypdf2 = "^3.0.1"
+tokenizers = "^0.20.0"
+pandas = "^2.2.3"
+jupyter-contrib-nbextensions = "^0.7.0"
+rank-bm25 = "^0.2.2"
 [tool.poetry.group.dev.dependencies]
 jupyter = "*"
 [build-system]
