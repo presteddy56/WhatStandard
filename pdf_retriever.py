@@ -13,14 +13,14 @@ class process:
         with open(f"{self.root}/{self.source}/{lists_file}", 'r') as file:
             self.data = json.load(file)
         print(self.data)
-    def documents(self,documents_folder):
+    def documents(self,documents_folder,max_pages=40):
         full_documents = {}
         for i in range(len(self.data['files'])):
             country_name = self.data["countries"][i]
             file_path = self.root+"/"+self.source+"/"+documents_folder+"/"+self.data["files"][i]
             contents = pdf_loader.PdfReader(file_path)
             pages = ""
-            for m in range(40):
+            for m in range(max_pages):
                 try:
                     page = contents.pages[m].extract_text()
                     pages=pages + page
