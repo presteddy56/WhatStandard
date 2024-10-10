@@ -7,6 +7,7 @@ import pandas as pd
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer
 import scipy
+from scipy import stats
 
 class process:
     def set_documents(self, documents:dict):
@@ -111,6 +112,7 @@ class process:
         bm_data = BM25_calculator(full_corpus, self.query)
         self.chunk_lists["BM25"] = bm_data
         self.chunk_lists["BM25_rank"]=self.chunk_lists["BM25"].rank(ascending=False)
+        self.chunk_lists["BM25_standardized"]=stats.zscore(self.chunk_lists["BM25"])
     def somantic(self):
         hugging_face_api_key = os.environ.get("HF_TOKEN")
         model_id = "sentence-transformers/all-MiniLM-L6-v2"
@@ -128,8 +130,9 @@ class process:
             cos.append(cos_tmp)
         self.chunk_lists["cosine"]=cos
         self.chunk_lists["cosine_rank"]=self.chunk_lists["cosine"].rank(ascending=False)
+        self.chunk_lists["cosine_standardized"]=stats.zscore(self.chunk_lists["cosine"])
     def WCscoring(self):
-        self.chunk_lists["WCscore"]= (self.chunk_lists["BM25"]/self.chunk_lists["BM25_rank"])+(self.chunk_lists["cosine"]/self.chunk_lists["cosine_rank"])
+        self.chunk_lists["WCscore"]= (self.chunk_lists["BM25_standardized"]/self.chunk_lists["BM25_rank"])+(self.chunk_lists["cosine_standardized"]/self.chunk_lists["cosine_rank"])
     def finally_selecting(self, percentile:float=0.95):
         quantile_rate = percentile
         self.contextual_retrieved = self.chunk_lists.loc[self.chunk_lists["WCscore"] >= self.chunk_lists["WCscore"].quantile(quantile_rate)]

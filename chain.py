@@ -36,7 +36,7 @@ class process:
         self.llm = llm
     def chaining(self):
         llm_chain = LLMChain(llm=self.llm, prompt=self.prompt)
-        chain = StuffDocumentsChain(
+        chain = create_stuff_documents_chain(
                 llm_chain=llm_chain,
                 document_prompt=self.document_prompt,
                 document_variable_name=self.document_variable_name,
