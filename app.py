@@ -3,7 +3,7 @@ import contextual_retrieval
 import vectores_langchain
 import chain
 pdfs =pdf_documentation.process()
-pdfs.set_data("/Users/presteddy56","resources","doc_name.json")
+pdfs.set_data(".","resources","doc_name.json")
 pdfs.documents("pdfs")
 crude_data =pdfs.full_documents
 contextual_lists = contextual_retrieval.process()

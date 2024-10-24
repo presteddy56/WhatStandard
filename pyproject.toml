@@ -31,6 +31,7 @@ keras-nlp = "^0.15.1"
 keras = "^3.6.0"
 numba = "^0.60.0"
 tensorflow = ">=2.0.0"
+tf-keras = "^2.17.0"
 [tool.poetry.group.dev.dependencies]
 jupyter = "*"
 [build-system]

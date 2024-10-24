@@ -6484,6 +6484,20 @@ test = ["pre-commit", "pytest (>=7.0)", "pytest-timeout"]
 typing = ["mypy (>=1.6,<2.0)", "traitlets (>=5.11.1)"]
 
 [[package]]
+name = "tf-keras"
+version = "2.17.0"
+description = "Deep learning for humans."
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "tf_keras-2.17.0-py3-none-any.whl", hash = "sha256:cc97717e4dc08487f327b0740a984043a9e0123c7a4e21206711669d3ec41c88"},
+    {file = "tf_keras-2.17.0.tar.gz", hash = "sha256:fda97c18da30da0f72a5a7e80f3eee343b09f4c206dad6c57c944fb2cd18560e"},
+]
+
+[package.dependencies]
+tensorflow = ">=2.17,<2.18"
+
+[[package]]
 name = "threadpoolctl"
 version = "3.5.0"
 description = "threadpoolctl"
@@ -7496,4 +7510,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "28a1fd51ec5cc513390390531c43a901088d2a0d6aaa9b4000614b89531e033d"
+content-hash = "731aadc3e4dd75cb441443250e8c96acaddd6a80e3f8985439203ea18eda9af6"
