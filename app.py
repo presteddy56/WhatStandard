@@ -9,7 +9,7 @@ crude_data =pdfs.full_documents
 contextual_lists = contextual_retrieval.process()
 contextual_lists.set_documents(crude_data)
 contextual_lists.tokenized_splitter(512)
-def chain_processing(query:str,k1:float=1.5, b:float=0.75, percentile:float=0.95,temperature=0.1):
+def chain_processing(query:str,k1:float=1.5, b:float=0.75, percentile:float=0.995,temperature=0.1):
     try:
         retrieval_sample = contextual_retrieval.process()
         retrieval_sample.chunk_lists= contextual_lists.chunk_lists
@@ -51,7 +51,7 @@ demo = gr.Interface(
     additional_inputs=[
         gr.Slider(value=1.2,minimum=0,maximum=3,step=0.1,label="k1: the impact of term frequency saturation. If you don't need to make the texts saturated, increase k1."),
         gr.Slider(value=0.75, minimum=0,maximum=1,step=0.1, label="b: document length normalization.When the document is more general and have more topics, increase b "),
-        gr.Slider(value=0.95,minimum=0.75, maximum=1,step=0.001,label="Percentile: the amount of input data"),
+        gr.Dropdown(value=0.995,choices=[0.95,0.995,0.9995,0.99995],label="Percentile: the amount of input data"),
         gr.Slider(value=0.1, minimum=0, maximum=1,step=0.1, label="temperature: productivity and stability of LLM")],
     outputs= "text",
     live = False,

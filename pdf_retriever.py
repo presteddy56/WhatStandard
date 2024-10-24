@@ -22,7 +22,7 @@ class process:
             for m in range(max_pages):
                 try:
                     page = contents.pages[m].extract_text()
-                    pages=pages + page
+                    pages=pages + f"{country_name}_Page{m}-----<"+ page + f">-------{country_name}_Page{m}"
                 except:pass
             full_documents[country_name] = pages
         self.full_documents=full_documents

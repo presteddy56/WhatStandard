@@ -3,15 +3,18 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_groq import ChatGroq
-from langchain.chains import LLMChain, StuffDocumentsChain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+#from langchain.chains.llm import LLMChain #StuffDocumentsChain
 
 class process:
     def template(self):
-        template = (""" You are a medical doctor and advisor who precisely answers questions related to standard treatment in a diagnosis.
-                Use the provided guidelines to answer the questions. You should mention the sentences exactly.
-                If you don't know the answer, say so. The guideline was provided from various countries.Therefore, you should make the differences clear as much as possible. 
-                Then, provide a reference in the given guidelines to review the details. 
-                You should refer to the given guidelines with pages. 
+        template = (""" You are a medical doctor and advisor who precisely answers questions related to standard treatments in the diagnosis.
+                Use the provided guidelines to answer the questions. I should use as many documents provided as possible.
+                And also, you should mention the sentences exactly.
+                If you don't know the answer, say so. 
+                The guideline was provided from various countries. Therefore, you should support the users to understand the difference within the countries in terms of medical direction. 
+                Then, provide a reference guideline with page numbers to support reviewing the details afterwards.
+                It is helpful for you that the guidelines apply a format to indicate the page number with guideline names as header and footer. 
                 If you add something outside the given guideline, you should mention that references are from outside of the given guidelines.
 
                 Guidelines:{guidelines}
@@ -35,13 +38,13 @@ class process:
         llm = ChatGroq(model="llama-3.1-70b-versatile", api_key=groq_api_key, temperature = 0.1)
         self.llm = llm
     def chaining(self):
-        llm_chain = LLMChain(llm=self.llm, prompt=self.prompt)
         chain = create_stuff_documents_chain(
-                llm_chain=llm_chain,
+                llm=self.llm,
+                prompt=self.prompt,
                 document_prompt=self.document_prompt,
                 document_variable_name=self.document_variable_name,
                 )
         self.chain = chain
     def run(self,query,doc):
-        self.answer = self.chain.run(input_documents= doc, question = query)
+        self.answer = self.chain.invoke(input= {"guidelines":doc, "question":query})
     

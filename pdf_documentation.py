@@ -15,7 +15,7 @@ class process:
             file_path = self.root+"/"+self.source+"/"+documents_folder+"/"+self.data[data_naming][i]
             contents = pdf_loader.PdfReader(file_path)
             pages = ""
-            for m in range(max_pages):
+            for m in range(len(contents.pages)):
                 try:
                     page = contents.pages[m].extract_text()
                     pages=pages + page
