@@ -1,6 +1,4 @@
----
 
----
 <img src="./images/image_1.png"
      alt="WhatStandard logo"
      width = "200"
@@ -16,5 +14,9 @@ This is a single turn chatbot to ask a consensus of a treatment based on pooled 
 
 ## The construction
 A basic image of the RAG process is here.
+
 ![RAG processing image](./images/Image_2.png)
+
+This calculate Question Resource Value(QRV) based on the following formula.
+
 $$ QRV = BM25_{standerdized}/rank_{BM25}+cosine_{standerdized}/rank_{cosine}$$
