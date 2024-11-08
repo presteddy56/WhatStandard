@@ -8,7 +8,7 @@ class process:
         self.source = source_folder
         with open(f"{self.root}/{self.source}/{lists_file}", 'r') as file:
             self.data = json.load(file)
-    def documents(self,documents_folder,max_pages=40,tag_naming:str = "countries", data_naming:str ="files"):
+    def documents(self,documents_folder,tag_naming:str = "countries", data_naming:str ="files"):
         full_documents = {}
         for i in range(len(self.data[data_naming])):
             country_name = self.data[tag_naming][i]
